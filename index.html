@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Refreshed Convergence LMS Administration dashboard prototype using Vector design system components with preserved quick-access workflows.">
+  <title>Convergence LMS Administration Revamp</title>
+  <script
+    type="module"
+    src="https://cdn.vsp-prod.com/web-components/@vector-web-components/core/v1.19.0/core.iife.js">
+  </script>
+  <script
+    src="https://cdn.vsp-prod.com/web-components/@vector-web-components/themes/v1.5.0/styles.js">
+  </script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.vsp-prod.com/web-components/@vector-web-components/assets/v1.0.0/fonts/open-sans/v43/open-sans.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <vwc-topnav id="topnav" main-content-id="mainContent">
+      <div slot="rightSide" class="topnav-links">
+        <a href="#" class="topnav-link">Home</a>
+        <a href="#" class="topnav-link">Training</a>
+        <a href="#" class="topnav-link">Catalog</a>
+        <a href="#" class="topnav-link">Insights <span class="topnav-beta">Beta</span></a>
+        <a href="#" class="topnav-link active">Administration</a>
+      </div>
+      <vwc-user-menu id="topnavUserMenu" slot="app-switcher" class="topnav-user-menu">
+        <vwc-language-selector-dialog id="languageSelectorDialog" slot="language-selector"></vwc-language-selector-dialog>
+      </vwc-user-menu>
+      <vwc-notifications-menu id="topnavNotificationsMenu" slot="notifications-menu"></vwc-notifications-menu>
+    </vwc-topnav>
+
+    <div class="workspace">
+      <div id="locationPickerOverlay" class="location-picker-overlay" aria-hidden="true"></div>
+      <aside class="sidebar">
+        <div class="sidebar-search">
+          <label class="sidebar-search-control" for="sidebarSearchInput">
+            <i class="fa-solid fa-magnifying-glass sidebar-search-icon" aria-hidden="true"></i>
+            <input
+              id="sidebarSearchInput"
+              type="search"
+              placeholder="Search administration"
+              aria-label="Search administration navigation">
+          </label>
+        </div>
+        <nav id="sidebarNav" class="admin-sidebar-nav" aria-label="Administration sections">
+          <div id="sidebarNavList" class="sidebar-nav-list"></div>
+        </nav>
+      </aside>
+      <button
+        type="button"
+        id="sidebarToggle"
+        class="sidebar-edge-toggle"
+        aria-label="Collapse navigation"
+        aria-expanded="true"
+        aria-controls="sidebarNav">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <main id="mainContent" class="main-content">
+        <section class="page-banner">
+          <div class="context-ribbon">
+            <div class="location-trigger-wrap">
+              <button
+                type="button"
+                id="locationChip"
+                class="location-chip"
+                aria-label="Open location context"
+                aria-expanded="false"
+                aria-controls="locationPickerPanel">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Location</span>
+              </button>
+              <vwc-card
+                id="locationPickerPanel"
+                theme="elevated"
+                class="location-picker-panel"
+                aria-label="Location hierarchy picker">
+                <div id="locationPickerTree" slot="content" class="location-picker-tree"></div>
+              </vwc-card>
+            </div>
+            <div id="breadcrumbTrail" class="page-context breadcrumb-trail" aria-label="Current location and page">
+              <span class="breadcrumb-current">Administration Dashboard</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="dashboard-frame">
+          <vwc-card theme="padded elevated" class="quick-access-panel">
+            <div slot="header" class="quick-access-header">
+              <div class="quick-access-title">
+                <i class="fa-solid fa-bolt"></i>
+                <div>
+                  <div class="eyebrow">Administration dashboard</div>
+                  <h1>Admin Quick Access</h1>
+                </div>
+              </div>
+              <vwc-badge id="instanceBadge" theme="primary">UAT Environment</vwc-badge>
+            </div>
+
+            <div slot="content">
+              <div class="tile-grid" id="quickActionGrid"></div>
+            </div>
+
+            <div slot="actions" class="panel-footer">
+              <span id="instanceMeta">Version 2.57.0.0 · Instance WN0MDWK0000W2</span>
+            </div>
+          </vwc-card>
+        </section>
+      </main>
+    </div>
+
+    <div id="sessionSwitchSkeleton" class="session-switch-skeleton" aria-hidden="true">
+      <div class="session-switch-topbar">
+        <div class="skeleton-block skeleton-brand"></div>
+        <div class="session-switch-topnav-links">
+          <div class="skeleton-block skeleton-link"></div>
+          <div class="skeleton-block skeleton-link"></div>
+          <div class="skeleton-block skeleton-link"></div>
+          <div class="skeleton-block skeleton-link"></div>
+          <div class="skeleton-block skeleton-link active"></div>
+        </div>
+        <div class="session-switch-actions">
+          <div class="skeleton-circle"></div>
+          <div class="skeleton-circle"></div>
+          <div class="skeleton-circle"></div>
+        </div>
+      </div>
+      <div class="session-switch-body">
+        <div class="session-switch-sidebar">
+          <div class="skeleton-block skeleton-search"></div>
+          <div class="skeleton-block skeleton-nav-row active"></div>
+          <div class="skeleton-block skeleton-nav-row"></div>
+          <div class="skeleton-block skeleton-nav-row"></div>
+          <div class="skeleton-block skeleton-nav-row"></div>
+          <div class="skeleton-block skeleton-nav-row"></div>
+          <div class="skeleton-block skeleton-nav-row"></div>
+          <div class="skeleton-block skeleton-nav-row"></div>
+          <div class="skeleton-block skeleton-nav-row"></div>
+        </div>
+        <div class="session-switch-main">
+          <div class="skeleton-block skeleton-context"></div>
+          <div class="skeleton-block skeleton-panel">
+            <div class="session-switch-tiles">
+              <div class="skeleton-block skeleton-tile"></div>
+              <div class="skeleton-block skeleton-tile"></div>
+              <div class="skeleton-block skeleton-tile"></div>
+              <div class="skeleton-block skeleton-tile"></div>
+              <div class="skeleton-block skeleton-tile"></div>
+              <div class="skeleton-block skeleton-tile"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <vwc-drawer id="actionDrawer" position="end" overlay closable restore-focus-selector="#sidebarToggle">
+    <div slot="drawer-header" class="drawer-header">
+      <div class="eyebrow">Quick access detail</div>
+      <h2 id="drawerTitle">Administration action</h2>
+    </div>
+    <div slot="drawer-content" class="drawer-content">
+      <div class="detail-surface">
+        <div class="detail-meta" id="drawerMeta"></div>
+        <p id="drawerDescription"></p>
+      </div>
+      <div class="detail-surface">
+        <h3>What stays the same</h3>
+        <div id="drawerParity" class="detail-list"></div>
+      </div>
+      <div class="detail-surface">
+        <h3>Vector refresh</h3>
+        <div id="drawerComponents" class="detail-list"></div>
+      </div>
+      <div class="drawer-actions">
+        <vaadin-button id="drawerPrimaryAction" theme="primary">Open area</vaadin-button>
+        <vaadin-button id="drawerSecondaryAction" theme="tertiary">Close</vaadin-button>
+      </div>
+    </div>
+    <div slot="content"></div>
+  </vwc-drawer>
+
+  <vaadin-notification id="notification" duration="3000" position="bottom-start"></vaadin-notification>
+
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
