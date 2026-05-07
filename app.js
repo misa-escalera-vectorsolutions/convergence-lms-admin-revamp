@@ -183,7 +183,7 @@ function getAccountConfig(accountId) {
     id: 'vector',
     brand: 'vector',
     logo: {
-      src: '../../Presentations/assets/Vector Solutions logo.svg',
+      src: 'assets/Vector Solutions logo.svg',
       alt: 'Vector Solutions'
     },
     user: {
